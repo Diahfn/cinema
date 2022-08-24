@@ -1,6 +1,6 @@
 export const API = () => {
     const baseUrl = process.env.REACT_APP_SERVER_URL ||
-                    'https://cinema-b36.herokuapp.com' ||
+                    'https://cinema-b36.herokuapp.com/api/v1' ||
                     'http://localhost:5000/api/v1'
 
     const executeAPI = async (endpoint, config) => {
