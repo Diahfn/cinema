@@ -6,6 +6,7 @@ import ModalAuth from '../component/modal/auth'
 import { filmData } from '../dummy/film'
 import Login from '../component/auth/login'
 import Register from '../component/auth/register'
+import brand from '../assets/brand.png'
 
 export default function Auth() {
 
