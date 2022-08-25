@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
 import user from '../assets/user-nav.png'
@@ -10,29 +10,14 @@ import complain from '../assets/complain.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import brand from '../assets/brand.png'
 import { UserContext } from '../context/userContext'
-import Login from './auth/login'
-import Register from './auth/register'
+
  
 export default function NavBar() {
 
     const navigate = useNavigate()
 
     const [state, dispatch] = useContext(UserContext)
-    const [login, setLogin] = useState(false)
-    const [register, setRegister] = useState(false)
-    const closeLogin = () => setLogin(false)
-    const closeRegister = () => setRegister(false)
-
-    const handleLogin = () => {
-        setLogin(true)
-        setRegister(false)
-    }
-
-    const handleRegister = () => {
-        setRegister(true)
-        setLogin(false)
-    }
-
+    
     // Function if user logout
     const logout = () => {
         dispatch({
@@ -46,28 +31,7 @@ export default function NavBar() {
     <>
         <Navbar expand='lg' className='sticky-top mx-0' style={{background: '#0D0D0D'}}>
             <Container>
-                    
-                {!state.isLogin ? (
-                    <>
-                       <Navbar.Brand href='/auth'>
-                            <img
-                                alt='brand'
-                                src={brand}
-                            />
-                        </Navbar.Brand>
-                        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-                        <Navbar.Collapse id='responsive-navbar-nav'>
-
-                        <Nav className='ms-auto py-0'>
-                            <Nav.Link className='auth mx-3' onClick={handleLogin}>Login</Nav.Link>
-                            <Nav.Link className='auth mx-3' style={{backgroundColor: '#CD2E71'}} onClick={handleRegister}>Register</Nav.Link>
-                            
-                        </Nav>
-                        </Navbar.Collapse>
-                    </>
-                ) : (
-                    <>
-                    <Navbar.Brand href='/homepage'>
+                <Navbar.Brand href='/homepage'>
                         <img
                             alt='brand'
                             src={brand}
@@ -115,20 +79,7 @@ export default function NavBar() {
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
-                    </>        
-                )}
-                
             </Container>
-            <Login
-            login={login}
-            closeLogin={closeLogin}
-            handleRegister={handleRegister}
-        />
-        <Register
-            register={register}
-            handleLogin={handleLogin}
-            closeRegister={closeRegister}
-        />
         </Navbar>
     </>
   )

@@ -25,12 +25,12 @@ export default function LandingPage() {
         }
 
         let response = await api.get('/my-film', config)
-        // console.log(response.data)
+        
         return response.data
     })
 
     const buy = () => {
-        navigate('/film/9')
+        navigate('/film/2')
     }
     
   return (

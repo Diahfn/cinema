@@ -1,10 +1,11 @@
 import React, {  useState } from 'react'
-import { Container, Row } from 'react-bootstrap'
+import { Container, Row, Navbar, Nav } from 'react-bootstrap'
 
 import deadpool from '../assets/deadpool.png'
 import ModalAuth from '../component/modal/auth'
 import { filmData } from '../dummy/film'
-import NavBar from '../component/navBar'
+import Login from '../component/auth/login'
+import Register from '../component/auth/register'
 
 export default function Auth() {
 
@@ -13,9 +14,42 @@ export default function Auth() {
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
 
+    const [login, setLogin] = useState(false)
+    const [register, setRegister] = useState(false)
+    const closeLogin = () => setLogin(false)
+    const closeRegister = () => setRegister(false)
+
+    const handleLogin = () => {
+        setLogin(true)
+        setRegister(false)
+    }
+
+    const handleRegister = () => {
+        setRegister(true)
+        setLogin(false)
+    }
+
   return (
     <>
-        <NavBar />
+        <Navbar expand='lg' className='sticky-top mx-0' style={{background: '#0D0D0D'}}>
+            <Container>
+                <Navbar.Brand href='/auth'>
+                    <img
+                        alt='brand'
+                        src={brand}
+                    />
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls='basic-navbar-nav' />
+                <Navbar.Collapse id='responsive-navbar-nav'>
+                    <Nav className='ms-auto py-0'>
+                        <Nav.Link className='auth mx-3' onClick={handleLogin}>Login</Nav.Link>
+                        <Nav.Link className='auth mx-3' style={{backgroundColor: '#CD2E71'}} onClick={handleRegister}>Register</Nav.Link>
+                            
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+            
+        </Navbar>
         <Container>
             
             <Row className='d-flex align-items-center mt-4'>
@@ -56,6 +90,16 @@ export default function Auth() {
         <ModalAuth
             show={show}
             handleClose={handleClose}
+        />
+        <Login
+            login={login}
+            closeLogin={closeLogin}
+            handleRegister={handleRegister}
+        />
+        <Register
+            register={register}
+            handleLogin={handleLogin}
+            closeRegister={closeRegister}
         />
     </>
   )
