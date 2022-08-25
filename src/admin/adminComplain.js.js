@@ -23,7 +23,7 @@ export default function AdminComplain() {
     const [state] = useContext(UserContext)
 
     useEffect(() =>{
-        socket = io('http://localhost:5000', {
+        socket = io('https://cinema-b36.herokuapp.com/', {
             auth: {
                 token: localStorage.getItem('token')
             },
