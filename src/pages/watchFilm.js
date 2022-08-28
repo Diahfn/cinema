@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import NavBar from '../component/navBar'
 
@@ -15,6 +15,8 @@ export default function WatchFilm() {
     const title = 'Films' 
     document.title = 'Cinema | ' + title
 
+    const [transactions, setTransactions] = useState({})
+
     let { data: transaction, refetch } = useQuery('Cache', async () => {
         const config = {
             method: 'GET',
@@ -27,7 +29,13 @@ export default function WatchFilm() {
         
         return response.data
     })
-    
+    console.log(transaction)
+
+    useEffect(() => {
+        let data = transaction.find(item => item.id == id)
+        setTransactions(data)
+    }, [id])
+    console.log(transactions)
         
     return (
         <>
